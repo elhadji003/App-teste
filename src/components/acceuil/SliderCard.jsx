@@ -7,6 +7,8 @@ import image4 from "../../assets/images/ism.png";
 import image5 from "../../assets/images/subdeco.png";
 import image6 from "../../assets/images/volkeno.png";
 import image7 from "../../assets/images/3fpt.png";
+import image8 from "../../assets/images/anpej.jpg";
+import image9 from "../../assets/images/eclosio.jpg";
 
 const sponsors = [
   { id: 1, name: "IMBS STARTUP", image: image1 },
@@ -16,6 +18,8 @@ const sponsors = [
   { id: 5, name: "SUBDECO", image: image5 },
   { id: 6, name: "VOLKENO", image: image6 },
   { id: 7, name: "3FPT", image: image7 },
+  { id: 8, name: "ANPEJ", image: image8 },
+  { id: 9, name: "Eclosio", image: image9 },
 ];
 
 const SliderCard = () => {

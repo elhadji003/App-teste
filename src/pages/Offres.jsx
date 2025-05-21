@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
-import { FiSearch, FiStar, FiMapPin, FiBriefcase, FiDollarSign, FiClock } from 'react-icons/fi';
-
+import React, { useState } from "react";
+import {
+  FiSearch,
+  FiStar,
+  FiMapPin,
+  FiBriefcase,
+  FiDollarSign,
+  FiClock,
+} from "react-icons/fi";
 
 const Offres = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedLocation, setSelectedLocation] = useState('Thiès');
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedLocation, setSelectedLocation] = useState("Thiès");
   const [salaireRange, setSalaryRange] = useState(1000000);
 
   const jobs = [
@@ -17,7 +23,7 @@ const Offres = () => {
       salaire: "1.5M - 2M FCFA",
       experience: "5+ ans",
       poste: "Nouveau",
-      presente: true
+      presente: true,
     },
     {
       id: 2,
@@ -28,7 +34,7 @@ const Offres = () => {
       salaire: "400k FCFA/mois",
       experience: "2 ans",
       poste: "Il y a 3j",
-      présenté: false
+      présenté: false,
     },
     {
       id: 3,
@@ -39,9 +45,9 @@ const Offres = () => {
       salaire: "400k FCFA/mois",
       experience: "2 ans",
       poste: "Il y a 3j",
-      présenté: false
+      présenté: false,
     },
-        {
+    {
       id: 4,
       titre: "Formation en ui/ux design",
       entreprise: "IBMS",
@@ -49,8 +55,8 @@ const Offres = () => {
       salaire: "400k FCFA/mois",
       experience: "2 ans",
       poste: "Il y a 3j",
-      présenté: false
-    }
+      présenté: false,
+    },
   ];
 
   return (
@@ -63,23 +69,22 @@ const Offres = () => {
               <FiSearch className="text-gray-400 mr-2" />
               <input
                 type="text"
-                placeholder ="Rechercher un métier, une compétence..."
+                placeholder="Rechercher un métier, une compétence..."
                 className="w-full bg-transparent outline-none"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
-            
+
             <div className="flex items-center gap-2 bg-gray-100 rounded-lg px-4 py-2">
               <FiMapPin className="text-gray-400" />
-              <select 
+              <select
                 className="bg-transparent outline-none"
                 value={selectedLocation}
                 onChange={(e) => setSelectedLocation(e.target.value)}
               >
-               <option>Thiès</option>
-               
-               </select>
+                <option>Thiès</option>
+              </select>
             </div>
           </div>
         </div>
@@ -92,7 +97,7 @@ const Offres = () => {
           <div className="lg:w-64 space-y-6">
             <div className="bg-white p-4 rounded-lg shadow-sm">
               <h3 className="font-semibold mb-4">Filtres</h3>
-              
+
               <div className="space-y-4">
                 <div>
                   <label className="block text-sm mb-2">Salaire minimum</label>
@@ -106,15 +111,20 @@ const Offres = () => {
                       onChange={(e) => setSalaryRange(e.target.value)}
                       className="w-full"
                     />
-                    <span className="text-sm">{Math.floor(salaireRange / 1000)}k FCFA</span>
+                    <span className="text-sm">
+                      {Math.floor(salaireRange / 1000)}k FCFA
+                    </span>
                   </div>
                 </div>
 
                 <div>
                   <label className="block text-sm mb-2">Type de poste</label>
                   <div className="space-y-2">
-                    {['CDI', 'CDD', 'Stage', 'Freelance'].map((type) => (
-                      <label key={type} className="flex items-center gap-2 text-sm">
+                    {["CDI", "CDD", "Stage", "Freelance"].map((type) => (
+                      <label
+                        key={type}
+                        className="flex items-center gap-2 text-sm"
+                      >
                         <input type="checkbox" className="rounded" />
                         {type}
                       </label>
@@ -123,7 +133,9 @@ const Offres = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm mb-2">Niveau d'expérience</label>
+                  <label className="block text-sm mb-2">
+                    Niveau d'expérience
+                  </label>
                   <select className="w-full border rounded p-2 text-sm">
                     <option>Tous</option>
                     <option>Débutant</option>
@@ -148,9 +160,7 @@ const Offres = () => {
           {/* listes d'offres */}
           <div className="flex-1">
             <div className="flex justify-between items-center mb-6">
-              <h2 className="text-xl font-semibold">
-                124 offres trouvées
-              </h2>
+              <h2 className="text-xl font-semibold">124 offres trouvées</h2>
               <select className="border rounded p-2 text-sm">
                 <option>Trier par : Pertinence</option>
                 <option>Date de publication</option>
@@ -160,17 +170,24 @@ const Offres = () => {
 
             <div className="grid gap-4">
               {jobs.map((job) => (
-                <div key={job.id} className={`bg-white rounded-lg shadow-sm p-6 ${job.presente ? 'border-l-4 border-blue-500' : ''}`}>
+                <div
+                  key={job.id}
+                  className={`bg-white rounded-lg shadow-sm p-6 ${
+                    job.presente ? "border-l-4 border-blue-500" : ""
+                  }`}
+                >
                   <div className="flex gap-4 items-start">
                     <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
                       <FiBriefcase className="text-gray-400 text-xl" />
                     </div>
-                    
+
                     <div className="flex-1">
                       <div className="flex justify-between items-start">
                         <div>
                           <h3 className="text-lg font-semibold">{job.titre}</h3>
-                          <p className="text-blue-600 text-sm">{job.entreprise}</p>
+                          <p className="text-blue-600 text-sm">
+                            {job.entreprise}
+                          </p>
                         </div>
                         <button className="text-gray-400 hover:text-blue-500">
                           <FiStar className="w-5 h-5" />
@@ -202,10 +219,16 @@ const Offres = () => {
 
             {/* Pagination */}
             <div className="mt-8 flex justify-between items-center">
-              <span className="text-sm text-gray-500">Affichage 1-10 sur 124</span>
+              <span className="text-sm text-gray-500">
+                Affichage 1-10 sur 124
+              </span>
               <div className="flex gap-2">
-                <button className="px-3 py-1 rounded bg-blue-500 text-white">&lt; Précédent</button>
-                <button className="px-3 py-1 rounded hover:bg-gray-100">Suivant &gt;</button>
+                <button className="px-3 py-1 rounded bg-blue-500 text-white">
+                  &lt; Précédent
+                </button>
+                <button className="px-3 py-1 rounded hover:bg-gray-100">
+                  Suivant &gt;
+                </button>
               </div>
             </div>
           </div>

@@ -56,7 +56,7 @@ export default function Navbar() {
 
   return (
     <div
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 max-sm:border-b ${
         isScroll ? "bg-white shadow-md" : "bg-blue-900 text-white"
       }`}
     >
@@ -64,7 +64,7 @@ export default function Navbar() {
         <img
           src={logo}
           alt="logo-site"
-          className="w-16 h-16 object-cover bg-white"
+          className="w-16 h-16 object-cover bg-white max-sm:w-8 max-sm:h-8 max-sm:ms-2"
         />
 
         {/* Desktop Annonces */}

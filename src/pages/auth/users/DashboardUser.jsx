@@ -1,18 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Carousel from "../../../components/Carousel";
 import Chart from "../../../components/Chart";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faArrowDown,
-  faArrowLeft,
   faCheckCircle,
   faFileAlt,
   faPlus,
   faTimesCircle,
 } from "@fortawesome/free-solid-svg-icons";
-import OffresRecom from "../../../components/OffresRecom";
 import AnnonceCarousel from "../../../components/comunauter/AnnonceCarousel";
 import OffreVert from "../../../components/comunauter/OffreVert";
 import TabsOffres from "../../../components/comunauter/TabsOffres";

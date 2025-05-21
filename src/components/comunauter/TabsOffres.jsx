@@ -31,12 +31,13 @@ const TabsOffres = () => {
 
   return (
     <div className="p-4">
-      <div className="flex justify-center space-x-4 mb-6">
+      {/* Tabs */}
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-2 lg:flex lg:justify-center lg:space-x-4 mb-6 ">
         {tabs.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`px-4 py-2 rounded-md font-semibold ${
+            className={`px-4 py-2 rounded-md font-semibold w-full text-center ${
               activeTab === tab.id
                 ? "bg-blue-600 text-white"
                 : "bg-gray-200 text-gray-800 hover:bg-gray-300"
@@ -46,6 +47,8 @@ const TabsOffres = () => {
           </button>
         ))}
       </div>
+
+      {/* Content */}
       <div>{renderTabContent()}</div>
     </div>
   );

@@ -18,9 +18,12 @@ function Accueil() {
       <nav className="flex justify-between items-center shadow-md mb-4 p-4">
         <img src={logo} alt="" className="w-20 h-20 object-cover" />
         <FilActualites />
-        <button className="bg-blue-600 px-4 py-2 rounded-md text-white text-nowrap">
+        <Link
+          to={"/login"}
+          className="bg-blue-600 px-4 py-2 rounded-md text-white text-nowrap"
+        >
           Se connecter
-        </button>
+        </Link>
       </nav>
       <div className="mb-10 relative max-sm:p-4">
         <CarouselAccueil />

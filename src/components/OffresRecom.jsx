@@ -95,8 +95,8 @@ const OffresRecom = () => {
   const displayedOffers = showAll ? filteredOffers : filteredOffers.slice(0, 6);
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-lg mb-6">
-      <div className="flex justify-between items-center mb-4">
+    <div className="mb-6">
+      <div className="flex justify-between items-center mb-4 max-sm:flex-col max-sm:p-2 max-sm:gap-3">
         <h2 className="text-xl font-semibold text-blue-900">
           Offres Recommandées
         </h2>

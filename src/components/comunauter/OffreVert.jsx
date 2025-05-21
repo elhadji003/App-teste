@@ -3,45 +3,46 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import "../../css/animation.css";
 
 import annonce1 from "../../assets/images/eclosioAnnonce.jpg";
-import annonce2 from "../../assets/images/auchant.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTree } from "@fortawesome/free-solid-svg-icons";
-import offre1 from "../../assets/images/offreVert1.png";
+import annonce2 from "../../assets/images/gettaz.png";
+import annonce3 from "../../assets/images/adapdme.png";
+import annonce4 from "../../assets/images/adapte.png";
 
 const annonces = [
   {
     id: 1,
-    titre: "Recrutement développeur React",
+    titre: "Agent de culture maraîchère",
     description:
-      "Une startup recherche un développeur junior pour un CDD de 6 mois.",
-    type: "Voir plus",
+      "Recherchons un agent passionné pour travail sur culture bio en plein champ.",
+    type: "Postuler",
     image: annonce1,
   },
   {
     id: 2,
-    titre: "Stage en marketing digital",
-    description: "Rejoins une équipe dynamique pour un stage de 3 mois.",
-    type: "Voir plus",
-    image: offre1,
-  },
-  {
-    id: 3,
-    titre: "Formation gratuite en cybersécurité",
-    description: "Participez à une formation certifiante 100% financée.",
-    type: "Voir plus",
-    image:
-      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    id: 4,
-    titre: "Caissière",
-    description: "Gerer les factures .....",
+    titre: "Technicien en agroalimentaire",
+    description:
+      "Stage de 6 mois dans une coopérative de transformation bio locale.",
     type: "Voir plus",
     image: annonce2,
   },
+  {
+    id: 3,
+    titre: "Conseiller agricole",
+    description:
+      "Accompagnez les agriculteurs dans la transition vers des pratiques durables.",
+    type: "Postuler",
+    image: annonce3,
+  },
+  {
+    id: 4,
+    titre: "Formation permaculture",
+    description:
+      "Apprenez les techniques de permaculture lors d'une formation intensive.",
+    type: "S'inscrire",
+    image: annonce4,
+  },
 ];
 
-export default function OffreVert() {
+export default function OffreVertAgro() {
   const [current, setCurrent] = useState(0);
   const length = annonces.length;
 
@@ -53,60 +54,60 @@ export default function OffreVert() {
     setCurrent((prev) => (prev === 0 ? length - 1 : prev - 1));
   };
 
-  // ⏱️ Auto-slide toutes les 5 secondes
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide();
     }, 10000);
-
-    return () => clearInterval(interval); // Nettoyage
+    return () => clearInterval(interval);
   }, []);
 
-  if (!Array.isArray(annonces) || length === 0) {
-    return null;
-  }
+  if (!Array.isArray(annonces) || length === 0) return null;
 
   return (
-    <div className="w-full max-w-5xl mx-auto px-4">
-      <h2 className="text-2xl bg-gray-100 px-4 py-2 font-bold text-center text-gray-800 mb-6 uppercase">
-        Offre Vert <FontAwesomeIcon icon={faTree} color="green" />
+    <div className="w-full px-4">
+      <h2 className="bg-green-800 text-green-100 w-fit px-6 py-2 rounded-md my-4 mx-auto uppercase font-extrabold tracking-wide shadow-md">
+        Offres Vertes Agriculture & Agroalimentaire
       </h2>
 
-      <div className="relative w-full max-w-4xl mx-auto py-10 h-[400px] overflow-hidden">
+      <div className="relative max-w-4xl sm:max-w-2xl max-sm:max-w-[340px] mx-auto max-sm:mx-0 py-6 sm:py-8 h-[400px] sm:h-[340px] max-sm:h-[300px] overflow-hidden rounded-xl shadow-xl border-2 border-green-300">
         {annonces.map((item, index) => (
           <div
             key={item.id}
-            className={`absolute top-0 left-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out ${
+            className={`absolute top-0 left-0 w-full h-full transition-opacity duration-700 ease-in-out ${
               index === current ? "opacity-100 z-20" : "opacity-0 z-10"
-            } bg-cover bg-center rounded-lg`}
-            style={{ backgroundImage: `url(${item.image})` }}
+            } rounded-xl overflow-hidden`}
           >
-            <div className="w-full h-full bg-black bg-opacity-50 rounded-lg flex flex-col items-center justify-center px-6 text-center">
-              <h2 className="text-white text-4xl font-bold mb-4 drop-shadow-lg animate__animated animated-fadeInUp">
+            <img
+              src={item.image}
+              alt={item.titre}
+              className="w-full h-full object-cover brightness-90"
+            />
+            <div className="absolute inset-0 bg-green-900 bg-opacity-40 rounded-xl flex flex-col items-center justify-center px-8 text-center backdrop-blur-sm">
+              <h2 className="text-green-100 text-3xl sm:text-2xl max-sm:text-xl font-bold mb-3 drop-shadow-lg animate-fadeInUp">
                 {item.titre}
               </h2>
-              <p className="text-white text-lg max-w-2xl drop-shadow-md mb-6 animated-fadeInUp">
+              <p className="text-green-200 text-base max-sm:text-sm max-w-xl mb-6 drop-shadow-md animate-fadeInUp">
                 {item.description}
               </p>
-              <span className="inline-block border border-white bg-opacity-80 text-white px-5 py-2 font-semibold w-fit animated-fadeInUp">
+              <button className="border border-green-300 bg-green-700 bg-opacity-80 text-green-100 px-6 py-2 text-sm font-semibold rounded-lg hover:bg-green-600 hover:border-green-400 transition animate-fadeInUp">
                 {item.type}
-              </span>
+              </button>
             </div>
           </div>
         ))}
 
-        {/* Boutons navigation */}
+        {/* Flèches navigation */}
         <button
           onClick={prevSlide}
-          className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white bg-opacity-40 hover:bg-opacity-70 text-white p-3 rounded-full transition z-30"
-          aria-label="Précédent"
+          className="absolute top-1/2 left-4 transform -translate-y-1/2 text-green-200 text-3xl bg-green-800 bg-opacity-60 p-3 rounded-full hover:bg-opacity-90 z-30 transition"
+          aria-label="Slide précédente"
         >
           <FaChevronLeft />
         </button>
         <button
           onClick={nextSlide}
-          className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-black bg-opacity-40 hover:bg-opacity-70 text-white p-3 rounded-full transition z-30"
-          aria-label="Suivant"
+          className="absolute top-1/2 right-4 transform -translate-y-1/2 text-green-200 text-3xl bg-green-800 bg-opacity-60 p-3 rounded-full hover:bg-opacity-90 z-30 transition"
+          aria-label="Slide suivante"
         >
           <FaChevronRight />
         </button>
