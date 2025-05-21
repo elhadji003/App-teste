@@ -3,26 +3,12 @@ import React, { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faDoorOpen } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { logout } from "../backend/features/auth/authSlice";
-import { authApi, useGetMeQuery } from "../backend/features/auth/authAPI";
 
-export default function Dropdown({ username = "Utilisateur" }) {
+export default function Dropdown({ username = "Utilisateur", onLogout }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const dropdownRef = useRef(null);
 
-  const { data: user } = useGetMeQuery();
-
-  const isCommunity = user?.role === "community";
-
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  const handleLogout = () => {
-    dispatch(logout()); // vide le token
-    dispatch(authApi.util.resetApiState()); // reset tout le cache des requêtes
-    navigate("/login");
-  };
+  const isCommunity = "community";
 
   const handleClickOutside = (event) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -58,7 +44,7 @@ export default function Dropdown({ username = "Utilisateur" }) {
             Parametre
           </div>
           <button
-            onClick={handleLogout}
+            onClick={onLogout}
             className="w-full text-left px-4 py-2 text-red-600 hover:bg-gray-100"
           >
             Déconnexion <FontAwesomeIcon icon={faDoorOpen} />

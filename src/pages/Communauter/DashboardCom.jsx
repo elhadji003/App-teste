@@ -4,10 +4,11 @@ import ChartC from "../../components/comunauter/ChartC";
 import Calendrier from "../../components/comunauter/Calendrier";
 import ComOffre from "../../components/comunauter/ComOfrre";
 import ListesCandidatures from "../../components/comunauter/ListesCandidatures";
-import logo from "../../assets/images/volkeno.png";
+import logo from "../../assets/images/defaulLogo.png";
 import drapeau from "../../assets/images/drapeau-senegal.jpg";
 import Messages from "../../components/comunauter/Messages";
 import ListesEmployers from "../../components/comunauter/ListesEmployers";
+import StatistiquesRapides from "../../components/comunauter/StatistiquesRapides";
 
 const mockOffers = [
   { id: 1, title: "Développeur React", date: "2025-05-01", status: "En ligne" },
@@ -64,7 +65,7 @@ export default function DashboardCom() {
             alt=""
             className="w-20 h-20 rounded-full object-cover object-center border-2 border-gray-100 shadow-md cursor-pointer hover:scale-105 transition-transform duration-300"
           />
-          <h1 className="text-3xl font-bold mt-3">Volkeno</h1>
+          <h1 className="text-3xl font-bold mt-3">Entreprise</h1>
         </div>
 
         <div>
@@ -80,7 +81,7 @@ export default function DashboardCom() {
 
       <div className="flex gap-6 mb-10">
         <ChartC />
-        <Calendrier />
+        <StatistiquesRapides />
       </div>
 
       <div className="flex gap-6 mb-10">

@@ -1,29 +1,43 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
-import { useRegisterMutation } from "../../backend/features/auth/authAPI";
 import { toast } from "react-toastify";
 import { FaImage } from "react-icons/fa";
 
 function InscriptionEntreprise() {
   const { register, handleSubmit, reset, watch } = useForm();
-  const [registerUser, { isLoading }] = useRegisterMutation();
   const navigate = useNavigate();
   const [preview, setPreview] = useState(null);
 
+  const entreprise = {
+    nom: "entreprise",
+    domaine: "Informatique",
+    rccm: "12345678",
+    email: "entrprise@gmail.com",
+    password: "passer123",
+    password2: "passer123",
+  };
+
   const onSubmit = async (data) => {
     try {
-      const formData = new FormData();
-      for (let key in data) {
-        formData.append(key, data[key]);
+      if (
+        data.company_name === entreprise.nom &&
+        data.activity_field === entreprise.domaine &&
+        data.email === entreprise.email &&
+        data.rccm === entreprise.rccm &&
+        data.password === entreprise.password &&
+        data.password2 === entreprise.password2
+      ) {
+        toast.success("Inscription réussie");
+        navigate("/dashboard-communaute");
+      } else {
+        toast.error(
+          "Échec de l'inscription, veuillez vérifier les informations."
+        );
+        console.log("erreur :", data);
       }
 
-      const res = await registerUser(formData).unwrap();
-      if (res) {
-        toast.success("Inscription entreprise réussie !");
-        navigate("/login");
-        reset();
-      }
+      reset(); // Réinitialise le formulaire
     } catch (error) {
       toast.error("Erreur lors de l'inscription");
       console.error("Erreur : ", error);
@@ -156,16 +170,7 @@ function InscriptionEntreprise() {
             </div>
           </div>
           {/* Logo upload */}
-          <div>
-            <label className="block text-gray-700 font-medium mb-2">
-              Url du site de l'entreprise
-            </label>
-            <input
-              type="text"
-              {...register("url", { required: "Champ requis" })}
-              className="w-full border px-4 py-2 rounded-lg outline-none focus:ring-2 focus:ring-green-500"
-            />
-          </div>
+
           <div className="mb-6">
             <label className="block text-gray-700 font-medium mb-2">
               Logo de l'entreprise
@@ -196,7 +201,7 @@ function InscriptionEntreprise() {
             type="submit"
             className="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition"
           >
-            {isLoading ? "Enregistrement..." : "Créer un compte entreprise"}
+            Créer un compte entreprise
           </button>
           <p className="mt-6 text-center text-gray-600">
             Déjà inscrit ?

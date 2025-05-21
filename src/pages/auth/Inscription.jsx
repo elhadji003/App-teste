@@ -2,7 +2,6 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { useRegisterMutation } from "../../backend/features/auth/authAPI";
 import { toast } from "react-toastify";
 
 import logoChrome from "../../assets/images/google.png";
@@ -10,18 +9,35 @@ import facebook from "../../assets/images/facebook.png";
 
 function Inscription() {
   const { register, handleSubmit, reset } = useForm();
-  const [registerUser, { isLoading }] = useRegisterMutation();
   const navigate = useNavigate();
+
+  const user = {
+    username: "user",
+    genre: "man",
+    email: "user@gmail.com",
+    password: "passer123",
+    password2: "passer123",
+  };
 
   const onSubmit = async (data) => {
     try {
-      const res = await registerUser(data).unwrap();
-      console.log("Response: ", res);
-      if (res) {
+      if (
+        data.full_name === user.username &&
+        data.genre === user.genre &&
+        data.email === user.email &&
+        data.password === user.password &&
+        data.password2 === user.password2
+      ) {
         toast.success("Inscription réussie");
         navigate("/dashboard");
+      } else {
+        toast.error(
+          "Échec de l'inscription, veuillez vérifier les informations."
+        );
+        console.log("erreur :", data);
       }
-      reset();
+
+      // reset(); // Réinitialise le formulaire
     } catch (error) {
       toast.error("Erreur lors de l'inscription");
       console.error("Erreur : ", error);
@@ -117,7 +133,7 @@ function Inscription() {
             type="submit"
             className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
           >
-            {isLoading ? "Chargement..." : "S'inscrire"}
+            S'inscrire
           </button>
 
           <div className="mt-6 flex flex-col gap-4 justify-center">

@@ -1,25 +1,33 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
-import { useLoginMutation } from "../../backend/features/auth/authAPI";
 import { toast } from "react-toastify";
 import { FaBuilding } from "react-icons/fa";
 
 function ConnexionEntreprise() {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const navigate = useNavigate();
-  const [loginUser, { isLoading }] = useLoginMutation();
 
-  const onSubmit = async (data) => {
+  const user = {
+    email: "entreprise@gmail.com",
+    password: "pass1234",
+  };
+
+  const onSubmit = async (formData) => {
     try {
-      const res = await loginUser(data).unwrap();
-      if (res?.token) {
+      if (
+        formData.email === user.email &&
+        formData.password === user.password
+      ) {
         toast.success("Connexion réussie !");
-        navigate("/dashboard");
+        reset();
+        navigate("/dashboard-communaute");
+      } else {
+        toast.error("Email ou mot de passe incorrect !");
       }
-    } catch (error) {
-      toast.error("Échec de la connexion");
-      console.error("Erreur de connexion :", error);
+    } catch (err) {
+      console.error("Login error: ", err);
+      toast.error("Une erreur est survenue, veuillez réessayer.");
     }
   };
 
@@ -78,7 +86,7 @@ function ConnexionEntreprise() {
             type="submit"
             className="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition"
           >
-            {isLoading ? "Connexion..." : "Se connecter"}
+            Se connecter
           </button>
 
           <div className="flex items-center justify-between mt-6 max-sm:flex-col-reverse gap-4">

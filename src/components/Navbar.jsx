@@ -5,15 +5,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faBell, faTimes } from "@fortawesome/free-solid-svg-icons";
 import DropNotification from "./DropNotification";
-import { useGetMeQuery } from "../backend/features/auth/authAPI";
 import profileUser from "../assets/images/user.png";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { logout } from "../backend/features/auth/authSlice";
 import logo from "../assets/images/logoSamaAvenir.png";
 
 export default function Navbar() {
-  const { data: user, isLoading, error } = useGetMeQuery();
+  const user = {
+    full_name: "user",
+  };
 
   const isScroll = useScroll();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -24,11 +23,8 @@ export default function Navbar() {
   };
 
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const handleLogout = () => {
-    dispatch(logout());
-    window.location;
     navigate("/", { replace: true });
   };
 

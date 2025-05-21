@@ -1,10 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { useLoginMutation } from "../../backend/features/auth/authAPI";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { setCredentials } from "../../backend/features/auth/authSlice";
 import { toast } from "react-toastify";
 
 import logoChrome from "../../assets/images/google.png";
@@ -13,35 +11,23 @@ import facebook from "../../assets/images/facebook.png";
 function Connexion() {
   const navigate = useNavigate();
   const { register, handleSubmit, reset } = useForm();
-  const dispatch = useDispatch();
 
-  const [Login] = useLoginMutation();
+  const user = {
+    email: "user@gmail.com",
+    password: "pass1234",
+  };
 
-  const onSubmit = async (data) => {
+  const onSubmit = async () => {
     try {
-      const response = await Login(data).unwrap();
-      console.log("Response: ", response);
-
-      dispatch(
-        setCredentials({
-          user: response.user,
-          access: response.access,
-          refresh: response.refresh,
-          role: response.user.role,
-        })
-      );
-
-      toast.success("Vous êtes connecté avec succès");
-
-      const isAdmin = response.user?.role === "community";
-
-      if (isAdmin) {
-        navigate("/dashboard-communaute");
-      } else {
+      if (
+        register.email === user.email &&
+        register.password === user.password
+      ) {
         navigate("/dashboard");
+        reset();
+      } else {
+        toast.error("Email ou mot de passe incorrect!");
       }
-
-      reset();
     } catch (err) {
       console.error("Login error: ", err);
       toast.error("Identifiants incorrects, veuillez réessayer.", err);

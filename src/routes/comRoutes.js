@@ -7,9 +7,8 @@ import Offres from "../pages/Offres.jsx";
 const comRoutes = [
   { path: "/dashboard-communaute", element: DashboardCom },
   { path: "/profileCom", element: ProfileC },
-   { path: "/mes-recrutements", element: MesRecrus },
-    { path: "/offres", element: Offres },
-    
+  { path: "/mes-recrutements", element: MesRecrus },
+  { path: "/offres", element: Offres },
 ];
 
 export default comRoutes;

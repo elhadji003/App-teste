@@ -7,6 +7,7 @@ import {
   Tooltip,
   ResponsiveContainer,
   CartesianGrid,
+  // defs,c
 } from "recharts";
 
 const chartData = [
@@ -22,9 +23,9 @@ const chartData = [
 const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
     return (
-      <div className="bg-white p-2 rounded shadow border border-gray-200 text-sm">
-        <p className="font-semibold">{label}</p>
-        <p>{payload[0].value} candidatures</p>
+      <div className="bg-white p-3 rounded-xl shadow-lg border border-gray-200 text-sm">
+        <p className="text-gray-800 font-semibold">{label}</p>
+        <p className="text-green-600">{payload[0].value} candidatures</p>
       </div>
     );
   }
@@ -33,26 +34,46 @@ const CustomTooltip = ({ active, payload, label }) => {
 
 export default function ChartC() {
   return (
-    <div className="w-full lg:w-8/12 bg-white p-6 rounded-2xl shadow-lg">
-      <h3 className="text-xl font-bold mb-6 text-gray-800">
-        Candidatures reçues cette semaine
+    <div className="w-full lg:w-8/12 bg-white p-6 rounded-2xl shadow-xl border border-gray-100">
+      <h3 className="text-2xl font-semibold mb-6 text-gray-900">
+        📈 Candidatures reçues cette semaine
       </h3>
-      <ResponsiveContainer width="100%" height={300}>
+      <ResponsiveContainer width="100%" height={320}>
         <LineChart
           data={chartData}
-          margin={{ top: 10, right: 20, left: 0, bottom: 10 }}
+          margin={{ top: 20, right: 30, left: 10, bottom: 10 }}
         >
-          <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
-          <XAxis dataKey="date" tick={{ fill: "#6b7280", fontSize: 12 }} />
-          <YAxis tick={{ fill: "#6b7280", fontSize: 12 }} />
+          {/* Dégradé SVG */}
+          <defs>
+            <linearGradient id="colorCandidatures" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#10b981" stopOpacity={0.3} />
+              <stop offset="100%" stopColor="#10b981" stopOpacity={0} />
+            </linearGradient>
+          </defs>
+
+          <CartesianGrid strokeDasharray="4 4" stroke="#f3f4f6" />
+          <XAxis
+            dataKey="date"
+            tick={{ fill: "#9ca3af", fontSize: 13 }}
+            axisLine={false}
+            tickLine={false}
+          />
+          <YAxis
+            tick={{ fill: "#9ca3af", fontSize: 13 }}
+            axisLine={false}
+            tickLine={false}
+          />
           <Tooltip content={<CustomTooltip />} />
+
+          {/* Ligne avec fond dégradé */}
           <Line
             type="monotone"
             dataKey="candidatures"
-            stroke="#3b82f6"
+            stroke="#10b981"
             strokeWidth={3}
-            dot={{ r: 4, stroke: "#3b82f6", strokeWidth: 2, fill: "#fff" }}
-            activeDot={{ r: 6 }}
+            fill="url(#colorCandidatures)"
+            dot={{ r: 5, stroke: "#10b981", strokeWidth: 2, fill: "#fff" }}
+            activeDot={{ r: 8, fill: "#10b981" }}
           />
         </LineChart>
       </ResponsiveContainer>

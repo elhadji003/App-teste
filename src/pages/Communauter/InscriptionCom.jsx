@@ -1,24 +1,41 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
-import { useRegisterMutation } from "../../backend/features/auth/authAPI";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 function InscriptionCom() {
   const { register, handleSubmit, reset } = useForm();
-  const [registerUser, { isLoading }] = useRegisterMutation();
+
   const navigate = useNavigate();
+
+  const entreprise = {
+    username: "entreprise",
+    domaine: "Informatique",
+    ninea: "12345678",
+    email: "user@gmail.com",
+    password: "passer123",
+    password2: "passer123",
+  };
 
   const onSubmit = async (data) => {
     try {
-      const res = await registerUser(data).unwrap();
-      console.log("Response: ", res);
-      if (res) {
+      if (
+        data.full_name === entreprise.username &&
+        data.genre === entreprise.genre &&
+        data.email === entreprise.email &&
+        data.password === entreprise.password &&
+        data.password2 === entreprise.password2
+      ) {
         toast.success("Inscription réussie");
-        navigate("/login");
+        navigate("/DashboardCom");
+      } else {
+        toast.error(
+          "Échec de l'inscription, veuillez vérifier les informations."
+        );
+        console.log("erreur :", data);
       }
-      reset();
+
+      // reset(); // Réinitialise le formulaire
     } catch (error) {
       toast.error("Erreur lors de l'inscription");
       console.error("Erreur : ", error);
@@ -60,8 +77,8 @@ function InscriptionCom() {
                 className="w-full border px-3 py-2 rounded outline-blue-600 text-sm"
               />
             </div>
-            
-            <div>
+
+            {/* <div>
               <label className="block text-gray-700 mb-2 font-medium">
                 Type d'entreprise
               </label>
@@ -76,7 +93,7 @@ function InscriptionCom() {
                 <option value="other">Autre</option>
                 <option value="other">Société</option>
               </select>
-            </div>
+            </div> */}
           </div>
 
           <div className="mb-4">
@@ -113,7 +130,7 @@ function InscriptionCom() {
                 className="w-full border px-3 py-2 rounded outline-blue-600 text-sm"
               />
             </div>
-            
+
             <div>
               <label className="block text-gray-700 mb-2 font-medium">
                 Confirmation
@@ -130,7 +147,7 @@ function InscriptionCom() {
             type="submit"
             className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 text-sm"
           >
-            {isLoading ? "Chargement..." : "S'inscrire"}
+            S'inscrire
           </button>
 
           <div className="mt-4 text-center">

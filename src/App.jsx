@@ -7,6 +7,7 @@ import publicRoutes from "./routes/publicRoutes";
 import { ToastContainer } from "react-toastify";
 import ProtectedRoute from "./routes/ProtectRoutes";
 import comRoutes from "./routes/comRoutes";
+import LayoutCom from "./layouts/Layout.Com";
 
 export default function App() {
   return (
@@ -18,28 +19,14 @@ export default function App() {
         ))}
 
         {/* User Routes */}
-        <Route
-          path="/"
-          element={
-            <ProtectedRoute>
-              <Layout />
-            </ProtectedRoute>
-          }
-        >
+        <Route path="/" element={<Layout />}>
           {userRoutes.map(({ path, element: Element }) => (
             <Route key={path} path={path} element={<Element />} />
           ))}
         </Route>
 
         {/* communauter router */}
-        <Route
-          path="/"
-          element={
-            <ProtectedRoute>
-              <Layout />
-            </ProtectedRoute>
-          }
-        >
+        <Route path="/" element={<LayoutCom />}>
           {comRoutes.map(({ path, element: Element }) => (
             <Route key={path} path={path} element={<Element />} />
           ))}

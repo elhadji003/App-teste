@@ -5,12 +5,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faBell, faTimes } from "@fortawesome/free-solid-svg-icons";
 import DropNotification from "../DropNotification";
-import { useGetMeQuery } from "../../backend/features/auth/authAPI";
 import profileUser from "../../assets/images/user.png";
+import logo from "../../assets/images/logoSamaAvenir.png";
+import { useNavigate } from "react-router-dom";
 
 export default function NavbarC() {
-  const { data: user } = useGetMeQuery();
-
   const isScroll = useScroll();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openNotif, setOpenNotif] = useState(false);
@@ -19,28 +18,21 @@ export default function NavbarC() {
 
   const [announcements, setAnnouncements] = useState([]);
 
+  const user = "entreprise";
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    navigate("/login-entreprise", { replace: true });
+  };
+
   useEffect(() => {
     if (user) {
-      if (user.role === "community") {
-        setAnnouncements([
-          "📩 Vous avez reçu une nouvelle candidature sur votre offre.",
-          "👨‍💻 2 utilisateurs ont consulté vos offres aujourd’hui.",
-          "🎯 Améliorez vos offres pour attirer plus de candidats.",
-        ]);
-      } else if (user.role === "entreprise") {
-        setAnnouncements([
-          "📥 Candidat: Fatou Ndiaye a postulé à l’offre 'Secrétaire Bilingue'.",
-          "⚙️ Nouveau message : Besoin de plus d’informations sur l’offre publiée.",
-          "🎓 Rappel : Vérifiez les candidatures reçues cette semaine.",
-        ]);
-      } else {
-        setAnnouncements([
-          "💼 Offres disponibles : Développeur, Designer, Marketer...",
-          "📚 Formation gratuite en gestion de projet disponible.",
-          "🎯 Postulez à des missions proches de chez vous.",
-          "🤝 Rejoignez une communauté pour apprendre ensemble.",
-        ]);
-      }
+      setAnnouncements([
+        "📥 Candidat: Fatou Ndiaye a postulé à l’offre 'Secrétaire Bilingue'.",
+        "⚙️ Nouveau message : Besoin de plus d’informations sur l’offre publiée.",
+        "🎓 Rappel : Vérifiez les candidatures reçues cette semaine.",
+      ]);
     }
   }, [user]);
 
@@ -70,8 +62,11 @@ export default function NavbarC() {
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${bgColor} ${textColor}`}
     >
       <div className="max-w-screen-xl mx-auto flex justify-between items-center px-4 h-16">
-        <h1 className="text-2xl font-bold">SEN JOB.sn</h1>
-
+        <img
+          src={logo}
+          alt="logo-site"
+          className="w-16 h-16 object-cover bg-white"
+        />
         {/* Desktop Annonces */}
         <div className="hidden lg:flex items-center gap-4">
           <span className="font-bold px-3">Message : </span>
@@ -107,7 +102,7 @@ export default function NavbarC() {
               className="w-10 h-10 rounded-full object-cover border-2 border-gray-100 shadow-md cursor-pointer hover:scale-105 transition-transform duration-300"
             />
 
-            <Dropdown username={user?.full_name} />
+            <Dropdown username={"Entreprise"} onLogout={handleLogout} />
 
             {/* Notification Icon */}
             <button
@@ -120,6 +115,7 @@ export default function NavbarC() {
                   {notifications.length}
                 </span>
               )}
+              l
               {openNotif && (
                 <DropNotification
                   open={openNotif}
@@ -150,7 +146,7 @@ export default function NavbarC() {
                   alt="User Avatar"
                   className="w-10 h-10 rounded-full object-cover border-2 border-gray-100 shadow-md cursor-pointer hover:scale-105 transition-transform duration-300"
                 />
-                <Dropdown username={user?.full_name} onLogout={handleLogout} />
+                <Dropdown username={user?.full_name} />
               </div>
             </div>
           </motion.div>
