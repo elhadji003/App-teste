@@ -4,6 +4,9 @@ import "../../css/animation.css";
 
 import annonce1 from "../../assets/images/eclosioAnnonce.jpg";
 import annonce2 from "../../assets/images/auchant.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTree } from "@fortawesome/free-solid-svg-icons";
+import offre1 from "../../assets/images/offreVert1.png";
 
 const annonces = [
   {
@@ -19,8 +22,7 @@ const annonces = [
     titre: "Stage en marketing digital",
     description: "Rejoins une équipe dynamique pour un stage de 3 mois.",
     type: "Voir plus",
-    image:
-      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80",
+    image: offre1,
   },
   {
     id: 3,
@@ -39,7 +41,7 @@ const annonces = [
   },
 ];
 
-export default function AnnonceCarousel() {
+export default function OffreVert() {
   const [current, setCurrent] = useState(0);
   const length = annonces.length;
 
@@ -66,24 +68,20 @@ export default function AnnonceCarousel() {
 
   return (
     <div className="w-full max-w-5xl mx-auto px-4">
-      <h2 className="text-3xl bg-gray-1 00 px-4 py-2 bg-gray-100 font-bold text-center text-gray-800 mb-6">
-        Dernières annonces
+      <h2 className="text-2xl bg-gray-100 px-4 py-2 font-bold text-center text-gray-800 mb-6 uppercase">
+        Offre Vert <FontAwesomeIcon icon={faTree} color="green" />
       </h2>
 
-      <div className="relative w-full max-w-4xl max-sm:max-w-2xl mx-auto py-10 h-[400px] overflow-hidden">
+      <div className="relative w-full max-w-4xl mx-auto py-10 h-[400px] overflow-hidden">
         {annonces.map((item, index) => (
           <div
             key={item.id}
-            className={`absolute top-0 left-0 w-full h-full transition-opacity duration-700 ease-in-out ${
+            className={`absolute top-0 left-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out ${
               index === current ? "opacity-100 z-20" : "opacity-0 z-10"
-            } rounded-lg`}
+            } bg-cover bg-center rounded-lg`}
+            style={{ backgroundImage: `url(${item.image})` }}
           >
-            <img
-              src={item.image}
-              alt={item.titre}
-              className="w-full h-full object-cover rounded-lg"
-            />
-            <div className="absolute inset-0 bg-black bg-opacity-50 rounded-lg flex flex-col items-center justify-center px-6 text-center">
+            <div className="w-full h-full bg-black bg-opacity-50 rounded-lg flex flex-col items-center justify-center px-6 text-center">
               <h2 className="text-white text-4xl font-bold mb-4 drop-shadow-lg animate__animated animated-fadeInUp">
                 {item.titre}
               </h2>
@@ -96,6 +94,22 @@ export default function AnnonceCarousel() {
             </div>
           </div>
         ))}
+
+        {/* Boutons navigation */}
+        <button
+          onClick={prevSlide}
+          className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white bg-opacity-40 hover:bg-opacity-70 text-white p-3 rounded-full transition z-30"
+          aria-label="Précédent"
+        >
+          <FaChevronLeft />
+        </button>
+        <button
+          onClick={nextSlide}
+          className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-black bg-opacity-40 hover:bg-opacity-70 text-white p-3 rounded-full transition z-30"
+          aria-label="Suivant"
+        >
+          <FaChevronRight />
+        </button>
       </div>
     </div>
   );

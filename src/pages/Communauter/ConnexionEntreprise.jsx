@@ -5,29 +5,29 @@ import { toast } from "react-toastify";
 import { FaBuilding } from "react-icons/fa";
 
 function ConnexionEntreprise() {
-  const { register, handleSubmit, reset } = useForm();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
   const navigate = useNavigate();
 
-  const user = {
+  const userSimule = {
     email: "entreprise@gmail.com",
     password: "pass1234",
   };
 
-  const onSubmit = async (formData) => {
-    try {
-      if (
-        formData.email === user.email &&
-        formData.password === user.password
-      ) {
-        toast.success("Connexion réussie !");
-        reset();
-        navigate("/dashboard-communaute");
-      } else {
-        toast.error("Email ou mot de passe incorrect !");
-      }
-    } catch (err) {
-      console.error("Login error: ", err);
-      toast.error("Une erreur est survenue, veuillez réessayer.");
+  const onSubmit = (formData) => {
+    if (
+      formData.email === userSimule.email &&
+      formData.password === userSimule.password
+    ) {
+      toast.success("Connexion réussie !");
+      reset();
+      navigate("/dashboard-communaute");
+    } else {
+      toast.error("Email ou mot de passe incorrect !");
     }
   };
 
@@ -54,32 +54,62 @@ function ConnexionEntreprise() {
       <div className="lg:w-1/2 flex items-center justify-center p-6">
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="p-8 rounded-lg w-full max-w-xl"
+          className="p-8 rounded-lg w-full max-w-xl bg-white shadow-md"
         >
           <h2 className="text-3xl font-extrabold mb-6 text-center text-gray-800">
             Connexion
           </h2>
 
           <div className="mb-4">
-            <label className="block text-gray-700 font-medium mb-2">
+            <label
+              htmlFor="email"
+              className="block text-gray-700 font-medium mb-2"
+            >
               Email
             </label>
             <input
               type="email"
-              {...register("email", { required: true })}
+              id="email"
+              {...register("email", {
+                required: "L'email est requis",
+                pattern: {
+                  value: /^\S+@\S+$/i,
+                  message: "Format d'email invalide",
+                },
+              })}
               className="w-full border px-4 py-2 rounded-lg outline-none focus:ring-2 focus:ring-green-500"
             />
+            {errors.email && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.email.message}
+              </p>
+            )}
           </div>
 
           <div className="mb-6">
-            <label className="block text-gray-700 font-medium mb-2">
+            <label
+              htmlFor="password"
+              className="block text-gray-700 font-medium mb-2"
+            >
               Mot de passe
             </label>
             <input
               type="password"
-              {...register("password", { required: true })}
+              id="password"
+              {...register("password", {
+                required: "Le mot de passe est requis",
+                minLength: {
+                  value: 6,
+                  message: "Minimum 6 caractères",
+                },
+              })}
               className="w-full border px-4 py-2 rounded-lg outline-none focus:ring-2 focus:ring-green-500"
             />
+            {errors.password && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.password.message}
+              </p>
+            )}
           </div>
 
           <button
@@ -91,7 +121,7 @@ function ConnexionEntreprise() {
 
           <div className="flex items-center justify-between mt-6 max-sm:flex-col-reverse gap-4">
             <p className="text-green-600">
-              <Link to={"/fwd-entreprise"}>Mot de passe oublié ?</Link>
+              <Link to="/fwd-entreprise">Mot de passe oublié ?</Link>
             </p>
             <p className="text-center text-gray-600">
               Vous n’avez pas encore de compte ?

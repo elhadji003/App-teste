@@ -14,13 +14,15 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import OffresRecom from "../../../components/OffresRecom";
 import AnnonceCarousel from "../../../components/comunauter/AnnonceCarousel";
+import OffreVert from "../../../components/comunauter/OffreVert";
+import TabsOffres from "../../../components/comunauter/TabsOffres";
 
 const DashboardUser = () => {
   return (
     <div className="p-6 min-h-screen max-sm:p-0 max-sm:m-2">
-      <div className="flex items-center gap-8">
+      <div className="flex items-center gap-8 max-sm:flex-col">
         <AnnonceCarousel />
-        <AnnonceCarousel />
+        <OffreVert />
       </div>
 
       <div className="mb-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -92,7 +94,7 @@ const DashboardUser = () => {
       </div>
 
       {/* Offres Recommandées */}
-      <OffresRecom />
+      <TabsOffres />
     </div>
   );
 };

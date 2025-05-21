@@ -9,6 +9,7 @@ import logo from "../assets/images/logoSamaAvenir.png";
 import TemoignageCard from "./Communauter/TemoignageCard";
 import FilActualites from "../components/FilActualites";
 import FilActualitessm from "../components/FilActualitessm";
+import Footer from "../components/Footer";
 
 function Accueil() {
   return (
@@ -32,7 +33,7 @@ function Accueil() {
       <div className="mb-10 relative max-sm:p-4">
         <h2 className="text-2xl text-center font-bold mb-4 text-blue-900">
           <span className="inline-flex items-center">
-            Nouvelle annonce
+            Nouvelles annonces
             <span className="relative flex h-3 w-3 ml-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
@@ -97,7 +98,7 @@ function Accueil() {
         <SliderCard />
       </div>
 
-      <div className="bg-blue-900 text-white p-6 rounded-lg text-center">
+      <div className="bg-blue-900 text-white p-6 rounded-lg text-center max-sm:m-4">
         <h2 className="text-2xl font-bold mb-4">Entreprises & Startups</h2>
         <p>
           Vous cherchez des talents ? Créez un compte pour publier vos offres
@@ -111,11 +112,7 @@ function Accueil() {
         </Link>
       </div>
 
-      <footer className="bg-gray-100 text-center py-6 mt-10">
-        <p className="text-gray-600">
-          Rejoignez-nous et trouvez votre prochain emploi sur Sama Avenir !
-        </p>
-      </footer>
+      <Footer />
     </div>
   );
 }

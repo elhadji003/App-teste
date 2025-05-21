@@ -3,22 +3,23 @@ import { motion } from "framer-motion";
 import { FiAlertCircle } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 
-import image1 from "../../../assets/images/bakeli.png";
-import image2 from "../../../assets/images/bakeli.png";
-import image3 from "../../../assets/images/bakeli.png";
-import image4 from "../../../assets/images/bakeli.png";
-import image5 from "../../../assets/images/bakeli.png";
-import image6 from "../../../assets/images/bakeli.png";
+import image1 from "../../assets/images/bakeli.png";
+import image2 from "../../assets/images/bakeli.png";
+import image3 from "../../assets/images/bakeli.png";
+import image4 from "../../assets/images/bakeli.png";
+import image5 from "../../assets/images/bakeli.png";
+import image6 from "../../assets/images/bakeli.png";
 
-import imageOffre1 from "../../../assets/images/offre1.jpg";
-import imageOffre2 from "../../../assets/images/offre2.jpeg";
-import imageOffre3 from "../../../assets/images/offre3.jpg";
-import imageOffre4 from "../../../assets/images/offre8.jpg";
-import imageOffre5 from "../../../assets/images/offre5.png";
-import imageOffre6 from "../../../assets/images/offre6.png";
+import imageOffre1 from "../../assets/images/offre1.jpg";
+import imageOffre2 from "../../assets/images/offre2.jpeg";
+import imageOffre3 from "../../assets/images/offre3.jpg";
+import imageOffre4 from "../../assets/images/offre8.jpg";
+import imageOffre5 from "../../assets/images/offre5.png";
+import imageOffre6 from "../../assets/images/offre6.png";
+import { toast } from "react-toastify";
 
 // ✅ Export pour que OffreAccueil puisse les combiner
-export const offres = [
+const offres = [
   {
     id: 1,
     titre: "Développeur Frontend React",
@@ -92,11 +93,9 @@ const cardVariants = {
   visible: { opacity: 1, y: 0 },
 };
 
-function TousOffres({ search = "" }) {
-  const navigate = useNavigate();
-
+function OffreRemEmploie({ search = "" }) {
   const handleApply = () => {
-    navigate("/login");
+    toast.success("Demande envoyée avec succée");
   };
 
   const filteredData = offres.filter((offre) =>
@@ -166,7 +165,7 @@ function TousOffres({ search = "" }) {
                     onClick={handleApply}
                     className="mt-1 bg-white text-black px-3 py-1 rounded-md font-medium hover:bg-gray-100 transition text-xs"
                   >
-                    Voir plus
+                    Postuler
                   </button>
                 </div>
               </div>
@@ -178,4 +177,4 @@ function TousOffres({ search = "" }) {
   );
 }
 
-export default TousOffres;
+export default OffreRemEmploie;

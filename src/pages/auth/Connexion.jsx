@@ -9,28 +9,29 @@ import logoChrome from "../../assets/images/google.png";
 import facebook from "../../assets/images/facebook.png";
 
 function Connexion() {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
   const navigate = useNavigate();
-  const { register, handleSubmit, reset } = useForm();
 
-  const user = {
+  const userSimule = {
     email: "user@gmail.com",
     password: "pass1234",
   };
 
-  const onSubmit = async () => {
-    try {
-      if (
-        register.email === user.email &&
-        register.password === user.password
-      ) {
-        navigate("/dashboard");
-        reset();
-      } else {
-        toast.error("Email ou mot de passe incorrect!");
-      }
-    } catch (err) {
-      console.error("Login error: ", err);
-      toast.error("Identifiants incorrects, veuillez réessayer.", err);
+  const onSubmit = (formData) => {
+    if (
+      formData.email === userSimule.email &&
+      formData.password === userSimule.password
+    ) {
+      toast.success("Connexion réussie !");
+      reset();
+      navigate("/dashboard");
+    } else {
+      toast.error("Email ou mot de passe incorrect !");
     }
   };
 

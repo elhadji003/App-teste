@@ -17,7 +17,7 @@ const CardOffre = ({ offer, deleteOffre, onVoirOffre, isAccepted }) => {
           className="mt-4 px-4 py-2 border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white rounded-md transition duration-300"
           disabled={isAccepted}
         >
-          {isAccepted ? "Offre acceptée" : "Voir offre"}
+          {isAccepted ? "En cours ..." : "Voir offre"}
         </button>
         {!isAccepted ? (
           <button
