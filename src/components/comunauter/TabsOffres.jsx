@@ -8,10 +8,10 @@ const TabsOffres = () => {
   const [activeTab, setActiveTab] = useState("recom");
 
   const tabs = [
-    { id: "emploie", label: "Emploie" },
+    { id: "emploie", label: "Emplois" },
     { id: "stage", label: "Stages" },
-    { id: "recom", label: "Recommandés" },
     { id: "formation", label: "Formations" },
+    { id: "recom", label: "Recommandés" },
   ];
 
   const renderTabContent = () => {

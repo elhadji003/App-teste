@@ -11,7 +11,7 @@ const COLORS = ["#0088FE", "#00C49F", "#FFBB28"];
 
 export default function PieStats() {
   return (
-    <div className="max-w-sm mx-auto p-6 bg-white rounded-xl shadow-md">
+    <div className="max-w-sm p-6 bg-white rounded-xl shadow-md">
       <h3 className="text-xl font-bold mb-4 text-gray-800 text-center">
         Répartition des activités
       </h3>

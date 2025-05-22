@@ -3,7 +3,12 @@ import useScroll from "../../hooks/useScroll";
 import Dropdown from "../DropDown";
 import { motion, AnimatePresence } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faBell, faTimes } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBars,
+  faBell,
+  faDoorOpen,
+  faTimes,
+} from "@fortawesome/free-solid-svg-icons";
 import DropNotification from "../DropNotification";
 import profileUser from "../../assets/images/user.png";
 import logo from "../../assets/images/logoSamaAvenir.png";
@@ -123,6 +128,10 @@ export default function NavbarC() {
                   notifications={notifications}
                 />
               )}
+            </button>
+
+            <button onClick={() => navigate("/login")}>
+              <FontAwesomeIcon icon={faDoorOpen} />
             </button>
           </div>
         </div>

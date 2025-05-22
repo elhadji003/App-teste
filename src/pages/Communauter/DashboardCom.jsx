@@ -87,13 +87,13 @@ export default function DashboardCom() {
 
       <StatsCards offers={offers} applications={applications} />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
+      <div className="flex gap-6 mb-10">
         <ChartC />
         <PieStats />
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
+      <div className="flex gap-6 mb-10">
         <Messages />
-        {/* <ListesEmployers /> */}
+        <ListesEmployers />
       </div>
 
       <ComOffre offers={offers} />

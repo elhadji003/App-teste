@@ -80,12 +80,18 @@ const DashboardUser = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-6">
+      <h2 className="text-2xl font-bold mb-4 text-blue-900 text-center bg-gray-100 p-4">
+        Annonces
+      </h2>
+      <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
         <AnnonceCarousel />
         <OffreVert />
       </div>
 
       {/* Offres Recommandées */}
+      <h2 className="text-2xl font-bold mb-4 text-blue-900 text-center bg-gray-100 p-4">
+        Parcours Professionnel
+      </h2>
       <TabsOffres />
     </div>
   );
