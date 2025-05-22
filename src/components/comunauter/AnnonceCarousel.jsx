@@ -5,6 +5,7 @@ import annonce1 from "../../assets/images/eclosioAnnonce.jpg";
 import annonce2 from "../../assets/images/auchant.png";
 import annonce3 from "../../assets/images/marie.jpg";
 import annonce4 from "../../assets/images/andicap.png";
+import { Link } from "react-router-dom";
 
 const annonces = [
   {
@@ -17,9 +18,9 @@ const annonces = [
   },
   {
     id: 2,
-    titre: "Auchan : Opportunités de stages en gestion agricole",
+    titre: "Auchan : Opportunités de stages en comptabilité",
     description:
-      "Rejoignez une équipe engagée dans l’agriculture responsable pour un stage de 3 mois.",
+      "Participez à la gestion financière d’un grand groupe de distribution et développez vos compétences en comptabilité pendant un stage de 3 mois.",
     type: "Voir plus",
     image: annonce2,
   },
@@ -88,9 +89,12 @@ export default function AnnonceCarouselVert() {
               <p className="text-white text-base max-sm:text-sm max-w-xl mb-6 drop-shadow-md">
                 {item.description}
               </p>
-              <button className="bg-black bg-opacity-80 text-white px-6 py-2 text-sm font-semibold rounded-lg hover:bg-green-600 hover:border-green-400 transition">
+              <Link
+                to={"/login"}
+                className="bg-black bg-opacity-80 text-white px-6 py-2 text-sm font-semibold rounded-lg hover:bg-green-600 hover:border-green-400 transition"
+              >
                 {item.type}
-              </button>
+              </Link>
             </div>
           </div>
         ))}

@@ -10,6 +10,7 @@ import {
   faQuestionCircle,
   faUsers,
   faClose,
+  faPaperPlane,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
@@ -18,11 +19,15 @@ const Sidebar = () => {
   const menuItems = [
     { icon: faHome, label: "Dashboard", path: "/dashboard" },
     { icon: faBriefcase, label: "Offres de Travail", path: "/offres" },
-    { icon: faEnvelope, label: "Mes Postulations", path: "/MesPostulations" },
-    { icon: faBell, label: "Notifications", path: "/Notifications" },
-    { icon: faFileContract, label: "Mes Contrats", path: "/MesContrats" },
-    { icon: faUsers, label: "Communauté", path: "/Communauter" },
-    { icon: faQuestionCircle, label: "Aide & Support", path: "/AideSupport" },
+    {
+      icon: faPaperPlane,
+      label: "Mes Postulations",
+      path: "/mes-postulations",
+    },
+    { icon: faBell, label: "Notifications", path: "/notifications" },
+    { icon: faFileContract, label: "Mes Contrats", path: "/mes-contrats" },
+    { icon: faUsers, label: "Communauté", path: "/communauter" },
+    // { icon: faQuestionCircle, label: "Aide & Support", path: "/AideSupport" },
   ];
 
   return (

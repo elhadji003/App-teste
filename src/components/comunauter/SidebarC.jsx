@@ -6,8 +6,11 @@ import {
   faBriefcase,
   faUsers,
   faClose,
+  faPlusCircle,
+  faPaperPlane,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import { FaPaperPlane } from "react-icons/fa";
 
 const SidebarC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,6 +23,12 @@ const SidebarC = () => {
       path: "/publier-offre",
     },
     { icon: faUsers, label: "Mes Recrutements", path: "/mes-recrutements" },
+    { icon: faPlusCircle, label: "Publier Une Offre", path: "/publier-offre" },
+    {
+      icon: faPaperPlane,
+      label: "Publier Une Offre",
+      path: "/candidatures-recues",
+    },
   ];
 
   return (

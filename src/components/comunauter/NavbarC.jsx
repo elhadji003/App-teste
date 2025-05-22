@@ -59,13 +59,13 @@ export default function NavbarC() {
 
   return (
     <div
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${bgColor} ${textColor}`}
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${bgColor} ${textColor} max-sm:border-b border-white`}
     >
       <div className="max-w-screen-xl mx-auto flex justify-between items-center px-4 h-16">
         <img
           src={logo}
           alt="logo-site"
-          className="w-16 h-16 object-cover bg-white"
+          className="w-12 h-12 object-cover bg-white max-sm:w-6 max-sm:h-6 max-sm:mx-3"
         />
         {/* Desktop Annonces */}
         <div className="hidden lg:flex items-center gap-4">

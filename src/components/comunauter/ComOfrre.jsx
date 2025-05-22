@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { FaBriefcase } from "react-icons/fa";
 
-export default function ComOffre({ offers }) {
+export default function ComOffre({ offers, onCreate }) {
   const formatDate = (dateStr) => {
     const date = new Date(dateStr);
     return date.toLocaleDateString("fr-FR", {
@@ -29,16 +29,25 @@ export default function ComOffre({ offers }) {
 
   return (
     <section className="mb-10">
-      <h3 className="text-2xl font-semibold mb-6 flex items-center gap-2 text-gray-800">
-        <FaBriefcase className="text-blue-600" />
-        Dernières offres publiées
-      </h3>
+      <div className="flex items-center justify-between mb-6">
+        <h3 className="text-2xl font-semibold flex items-center gap-2 text-gray-800">
+          <FaBriefcase className="text-green-600" />
+          Dernières offres publiées
+        </h3>
+
+        <button
+          onClick={onCreate}
+          className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition"
+        >
+          + Publier un offre
+        </button>
+      </div>
 
       {offers.length === 0 ? (
         <p className="text-gray-500 italic">Aucune offre disponible</p>
       ) : (
         <div className="overflow-x-auto rounded-lg shadow-sm">
-          <table className="min-w-full text-sm text-left bg-white border border-gray-200">
+          <table className="min-w-[600px] max-sm:min-w-full w-full text-sm text-left bg-white border border-gray-200">
             <thead className="bg-gray-100 text-gray-600 uppercase text-xs">
               <tr>
                 <th className="px-6 py-3 border-b">Titre</th>

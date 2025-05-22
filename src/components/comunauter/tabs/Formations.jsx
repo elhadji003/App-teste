@@ -12,7 +12,7 @@ export const offres = [
     date: "Du 10 Juin au 10 Juillet 2025",
     image:
       "https://images.unsplash.com/photo-1556761175-4b46a572b786?fit=crop&w=800&q=80",
-    path: "#",
+    path: "http://localhost:5173/",
   },
   {
     id: 2,
@@ -36,7 +36,7 @@ export const offres = [
     date: "À partir du 1er Juillet 2025",
     image:
       "https://images.unsplash.com/photo-1556761175-4b46a572b786?fit=crop&w=800&q=80",
-    path: "#",
+    path: "http://localhost:5173/",
   },
 ];
 

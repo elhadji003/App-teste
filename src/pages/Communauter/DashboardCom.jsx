@@ -9,6 +9,7 @@ import drapeau from "../../assets/images/drapeau-senegal.jpg";
 import Messages from "../../components/comunauter/Messages";
 import ListesEmployers from "../../components/comunauter/ListesEmployers";
 import StatistiquesRapides from "../../components/comunauter/StatistiquesRapides";
+import PieStats from "../../components/comunauter/PieStats";
 
 const mockOffers = [
   { id: 1, title: "Développeur React", date: "2025-05-01", status: "En ligne" },
@@ -69,24 +70,30 @@ export default function DashboardCom() {
         </div>
 
         <div>
-          <p className="font-extrabold">Un Peuple - Une But - Une Fois</p>
+          <p className="font-extrabold max-sm:hidden">
+            Un Peuple - Une But - Une Fois
+          </p>
         </div>
 
         <div>
-          <img src={drapeau} alt="" className="w-36 h-32" />
+          <img
+            src={drapeau}
+            alt=""
+            className="w-36 h-32 max-sm:w-24 max-sm:h-20
+          "
+          />
         </div>
       </div>
 
       <StatsCards offers={offers} applications={applications} />
 
-      <div className="flex gap-6 mb-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
         <ChartC />
-        <StatistiquesRapides />
+        <PieStats />
       </div>
-
-      <div className="flex gap-6 mb-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
         <Messages />
-        <ListesEmployers />
+        {/* <ListesEmployers /> */}
       </div>
 
       <ComOffre offers={offers} />

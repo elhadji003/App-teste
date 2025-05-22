@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { FiAlertCircle } from "react-icons/fi";
+import { toast } from "react-toastify";
 
 import image1 from "../../assets/images/eclosio.jpg";
 import image2 from "../../assets/images/gomycode.png";
@@ -15,7 +16,6 @@ import imageOffre3 from "../../assets/images/cmc.jpg";
 import imageOffre4 from "../../assets/images/offre8.jpg";
 import imageOffre5 from "../../assets/images/isepp.png";
 import imageOffre6 from "../../assets/images/comminucation.png";
-import { toast } from "react-toastify";
 
 // ✅ Export pour que OffreAccueil puisse les combiner
 const offres = [

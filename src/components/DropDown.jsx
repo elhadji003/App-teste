@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faDoorOpen } from "@fortawesome/free-solid-svg-icons";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Dropdown({ username = "Utilisateur", onLogout }) {
   const [menuOpen, setMenuOpen] = useState(false);

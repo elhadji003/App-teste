@@ -4,11 +4,11 @@ import ButtonPagination from "../ButtonPagination"; // assure-toi que le chemin 
 
 export default function Messages() {
   const messages = [
-    { id: 1, sender: "Alice", content: "Hello! How are you?" },
-    { id: 2, sender: "Bob", content: "Let's meet tomorrow." },
-    { id: 3, sender: "Charlie", content: "Don't forget the meeting." },
-    { id: 4, sender: "David", content: "Can you send me the report?" },
-    { id: 5, sender: "Eve", content: "Great job on the presentation!" },
+    { id: 1, sender: "Cheikh Seck", content: "Hello! How are you?" },
+    { id: 2, sender: "Djiby Fall", content: "Let's meet tomorrow." },
+    { id: 3, sender: "Lat Dior", content: "Don't forget the meeting." },
+    { id: 4, sender: "ELhadji Thiam", content: "Can you send me the report?" },
+    { id: 5, sender: "Aliou Ba", content: "Great job on the presentation!" },
   ];
 
   const messagesPerPage = 4;
@@ -31,7 +31,7 @@ export default function Messages() {
         {visibleMessages.map((message) => (
           <div
             key={message.id}
-            className="flex justify-between items-center bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-lg px-4 py-3"
+            className="flex justify-between items-center bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-lg px-4 py-3 overflow-clip"
           >
             <p className="text-sm text-gray-800">
               <span className="font-medium text-gray-900">
@@ -39,7 +39,7 @@ export default function Messages() {
               </span>{" "}
               : {message.content}
             </p>
-            <button className="flex items-center gap-1 text-sm text-blue-600 hover:text-blue-800 transition">
+            <button className="flex items-center gap-1 text-sm text-green-600 hover:text-green-800 transition">
               <MessageCircleReply size={16} />
               Répondre
             </button>

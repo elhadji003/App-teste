@@ -3,7 +3,12 @@ import useScroll from "../hooks/useScroll";
 import Dropdown from "./DropDown";
 import { motion, AnimatePresence } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faBell, faTimes } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBars,
+  faBell,
+  faDoorOpen,
+  faTimes,
+} from "@fortawesome/free-solid-svg-icons";
 import DropNotification from "./DropNotification";
 import profileUser from "../assets/images/user.png";
 import { useNavigate } from "react-router-dom";
@@ -64,7 +69,7 @@ export default function Navbar() {
         <img
           src={logo}
           alt="logo-site"
-          className="w-16 h-16 object-cover bg-white max-sm:w-8 max-sm:h-8 max-sm:ms-2"
+          className="w-12 h-12 object-cover bg-white max-sm:w-8 max-sm:h-8 max-sm:ms-2"
         />
 
         {/* Desktop Annonces */}
@@ -125,6 +130,9 @@ export default function Navbar() {
                   notifications={notifications}
                 />
               )}
+            </button>
+            <button onClick={() => navigate("/login")}>
+              <FontAwesomeIcon icon={faDoorOpen} />
             </button>
           </div>
         </div>
